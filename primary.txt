@@ -1,0 +1,213 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1
+Server version: 5.1.38-community MySQL Community Server (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| a2                 |
+| bkwrm              |
+| book               |
+| bookworm           |
+| bookwormdb         |
+| bookwormfinal      |
+| checklogin         |
+| coc                |
+| data               |
+| data2              |
+| data3              |
+| db                 |
+| deepak             |
+| devendra           |
+| e                  |
+| employee           |
+| exam               |
+| exp                |
+| hibernate          |
+| hobman             |
+| hotelmanagement    |
+| jj                 |
+| kkkk               |
+| kkw                |
+| kudal              |
+| lina12             |
+| mangal             |
+| mumbai             |
+| myanshu            |
+| mydata             |
+| mydb               |
+| mydb1              |
+| myexam             |
+| myfleet            |
+| myfrnd             |
+| mysql              |
+| new_schema1        |
+| nidhi              |
+| palomi             |
+| person             |
+| pratap             |
+| q3                 |
+| rani               |
+| riders             |
+| samplehm           |
+| stud               |
+| sumit              |
+| swapnil            |
+| test               |
+| user_info          |
+| vita               |
+| workbench          |
++--------------------+
+53 rows in set (1.05 sec)
+
+mysql> create database rto;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| a2                 |
+| bkwrm              |
+| book               |
+| bookworm           |
+| bookwormdb         |
+| bookwormfinal      |
+| checklogin         |
+| coc                |
+| data               |
+| data2              |
+| data3              |
+| db                 |
+| deepak             |
+| devendra           |
+| e                  |
+| employee           |
+| exam               |
+| exp                |
+| hibernate          |
+| hobman             |
+| hotelmanagement    |
+| jj                 |
+| kkkk               |
+| kkw                |
+| kudal              |
+| lina12             |
+| mangal             |
+| mumbai             |
+| myanshu            |
+| mydata             |
+| mydb               |
+| mydb1              |
+| myexam             |
+| myfleet            |
+| myfrnd             |
+| mysql              |
+| new_schema1        |
+| nidhi              |
+| palomi             |
+| person             |
+| pratap             |
+| q3                 |
+| rani               |
+| riders             |
+| rto                |
+| samplehm           |
+| stud               |
+| sumit              |
+| swapnil            |
+| test               |
+| user_info          |
+| vita               |
+| workbench          |
++--------------------+
+54 rows in set (0.00 sec)
+
+mysql> use rto
+Database changed
+mysql> create table rtodetail
+    -> (veh no int,veh name, primary key(veh no ));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int,veh name, primary key(veh no ))' at line 2
+mysql> (vehno int,veh name, primary key(vehno));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vehno int,veh name, primary key(vehno))' at line 1
+mysql> create table rtodetails
+    -> (veh no int,veh name varchar(20),primary key(veh no));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'no int,veh name varchar(20),primary key(veh no))' at line 2
+mysql> (vehno int,vehname varchar(20),primary key(vehno));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vehno int,vehname varchar(20),primary key(vehno))' at line 1
+mysql> create table rtodetails
+    -> (vehno int, vehname varchar(20), primary key(vehno));
+Query OK, 0 rows affected (0.36 sec)
+
+mysql> select *
+    -> from rtodetails;
+Empty set (0.03 sec)
+
+mysql> insert into rtodetails values (1687,'dio');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into rtodetails values (1687,'activa');
+ERROR 1062 (23000): Duplicate entry '1687' for key 'PRIMARY'
+mysql> insert into rtodetails values (1687,'activa');
+ERROR 1062 (23000): Duplicate entry '1687' for key 'PRIMARY'
+mysql> insert into rtodetails values (8887,'activa');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into rtodetails values (0087,'scooty');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select *
+    -> from rtodetails;
++-------+---------+
+| vehno | vehname |
++-------+---------+
+|    87 | scooty  |
+|  1687 | dio     |
+|  8887 | activa  |
++-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> alter table rtodetails add column ownname varcahr(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varcahr(20)' at line 1
+mysql> alter table rtodetails add coloumn ownname varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ownname varchar(20)' at line 1
+mysql> alter table rtodetails add column ownname varchar(20);
+Query OK, 3 rows affected (0.20 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> update rtodetails
+    -> set ownname='shubham'
+    -> where vehno=1687;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update rtodetails
+    -> set ownname='ashwin'
+    -> where vehno=87;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update rtodetails
+    -> set ownname='sagar'
+    -> where vehno=8887;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *
+    -> from rtodetails;
++-------+---------+---------+
+| vehno | vehname | ownname |
++-------+---------+---------+
+|    87 | scooty  | ashwin  |
+|  1687 | dio     | shubham |
+|  8887 | activa  | sagar   |
++-------+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql>
