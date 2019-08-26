@@ -1,0 +1,220 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.1.38-community MySQL Community Server (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| adventureworks     |
+| day2               |
+| db                 |
+| dbname             |
+| employee           |
+| exam               |
+| hobman             |
+| mydb               |
+| mydb2              |
+| mydemo2            |
+| mydemodata         |
+| mysql              |
+| onlineakka         |
+| person             |
+| test               |
++--------------------+
+16 rows in set (0.18 sec)
+
+mysql> create database adventurework;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> use adveneturework;
+ERROR 1049 (42000): Unknown database 'adveneturework'
+mysql> use adventureworks;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| adventurework      |
+| adventureworks     |
+| day2               |
+| db                 |
+| dbname             |
+| employee           |
+| exam               |
+| hobman             |
+| mydb               |
+| mydb2              |
+| mydemo2            |
+| mydemodata         |
+| mysql              |
+| onlineakka         |
+| person             |
+| test               |
++--------------------+
+17 rows in set (0.02 sec)
+
+mysql> use adventurework;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| adventurework      |
+| adventureworks     |
+| day2               |
+| db                 |
+| dbname             |
+| employee           |
+| exam               |
+| hobman             |
+| mydb               |
+| mydb2              |
+| mydemo2            |
+| mydemodata         |
+| mysql              |
+| onlineakka         |
+| person             |
+| test               |
++--------------------+
+17 rows in set (0.00 sec)
+
+mysql> create table productcategory
+    -> (
+    -> productcategoryid int,
+    -> name varchar(20)
+    -> );
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> insert into productcategory value(1,'bikes');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into productcategory value(2,'accs');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into productcategory value(3,'xyz');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select *
+    -> from product category;
+ERROR 1146 (42S02): Table 'adventurework.product' doesn't exist
+mysql> select *
+    -> from ProducCategory;
+ERROR 1146 (42S02): Table 'adventurework.produccategory' doesn't exist
+mysql> select *
+    -> from ProductCategory;
++-------------------+-------+
+| productcategoryid | name  |
++-------------------+-------+
+|                 1 | bikes |
+|                 2 | accs  |
+|                 3 | xyz   |
++-------------------+-------+
+3 rows in set (0.02 sec)
+
+mysql> alter table productcategory add column price int;
+Query OK, 3 rows affected (0.23 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select *
+    -> from ProductCategory;
++-------------------+-------+-------+
+| productcategoryid | name  | price |
++-------------------+-------+-------+
+|                 1 | bikes |  NULL |
+|                 2 | accs  |  NULL |
+|                 3 | xyz   |  NULL |
++-------------------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update productcategory
+    -> set price='250'
+    -> where productcategoryid=1;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *
+    -> from ProductCategory;
++-------------------+-------+-------+
+| productcategoryid | name  | price |
++-------------------+-------+-------+
+|                 1 | bikes |   250 |
+|                 2 | accs  |  NULL |
+|                 3 | xyz   |  NULL |
++-------------------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update productcategory
+    -> set price='25'
+    -> where productcategoryid=2;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update productcategory
+    -> set price='240'
+    -> where productcategoryid=3;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> slect *
+    -> from ProductCategory;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use
+ near 'slect *
+from ProductCategory' at line 1
+mysql> select *
+    -> from ProductCategory;
++-------------------+-------+-------+
+| productcategoryid | name  | price |
++-------------------+-------+-------+
+|                 1 | bikes |   250 |
+|                 2 | accs  |    25 |
+|                 3 | xyz   |   240 |
++-------------------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delete from productcategory
+    -> where name='xyx';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select *
+    -> from ProductCategory;
++-------------------+-------+-------+
+| productcategoryid | name  | price |
++-------------------+-------+-------+
+|                 1 | bikes |   250 |
+|                 2 | accs  |    25 |
+|                 3 | xyz   |   240 |
++-------------------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delete from productcategory
+    -> where name='xyz';
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select *
+    -> from productcategory;
++-------------------+-------+-------+
+| productcategoryid | name  | price |
++-------------------+-------+-------+
+|                 1 | bikes |   250 |
+|                 2 | accs  |    25 |
++-------------------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> drop table produccategory;
+ERROR 1051 (42S02): Unknown table 'produccategory'
+mysql> drop table produtcategory;
+ERROR 1051 (42S02): Unknown table 'produtcategory'
+mysql> drop table productcategory;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select *
+    -> from productcategory;
+ERROR 1146 (42S02): Table 'adventurework.productcategory' doesn't exist
+mysql>
